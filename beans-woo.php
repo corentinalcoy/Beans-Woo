@@ -31,7 +31,7 @@ include_once( 'includes/helper.php' );
 include_once( 'admin/init.php' );
 
 include_once('liana/init.php');
-
+include_once ('snow/init.php');
 
 if ( ! class_exists( 'WC_Beans' ) ) :
 
@@ -57,6 +57,7 @@ if ( ! class_exists( 'WC_Beans' ) ) :
             \BeansWoo\Admin\Main::init();
 
             \BeansWoo\Liana\Main::init();
+            \BeansWoo\Snow\Main::init();
         }
     }
 

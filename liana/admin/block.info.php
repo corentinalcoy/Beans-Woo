@@ -74,14 +74,31 @@ foreach ( $apps as $app_name => &$app_info ) {
   .beans-apps-table p{
     margin: auto;
   }
-
+  .btn {
+      border-radius: 4px;
+      padding: 10px 24px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      text-align: center;
+      border: None;
+  }
+  .bg-primary {
+      background-color: #6674ce !important;
+      color: white !important;
+      opacity: 0.75;
+      text-transform: uppercase;
+  }
+  .bg-primary:hover{
+      cursor: pointer;
+      opacity: 1;
+  }
 </style>
 <div class="beans-admin-container">
 
-  <img class="beans-admin-logo" src="https://trybeans.s3.amazonaws.com/static-v3/connect/img/beans.svg"
-       alt="Beans">
+    <img class="beans-admin-logo"  src="https://trybeans.s3.amazonaws.com/static-v3/connect/img/app/logo-full-liana.svg" alt="liana-logo">
 
-  <?php if(empty($card)): ?>
+    <?php if(empty($card)): ?>
 
   <div class="welcome-panel beans-admin-content" style="max-width: 600px; margin: auto">
     <p class="beans-admin-check-warning">
@@ -99,54 +116,40 @@ foreach ( $apps as $app_name => &$app_info ) {
   <?php else: ?>
 
   <div class="welcome-panel beans-admin-content" style="max-width: 600px; margin: auto">
-    <h1>Connected</h1>
+    <h1 style="text-align: center">Connected</h1>
     <p>
       Your store <b><?php echo $card['company_name']; ?></b>
-      is successfully connected to Beans!
+      is successfully connected to Liana!
     </p>
     <p>
       Your store unique identifier <b><?php echo $card['address']; ?></b>
     </p>
-
+      <div style="margin: auto;">
+          <img src="<?php echo plugins_url('/assets/hero-image-liana.svg', BEANS_PLUGIN_FILENAME) ?>" alt="liana-hero" width="95%">
+      </div>
     <div>
       <div class="beans-admin-form">
-        <p class="wc-setup-actions step">
-          <a class="button button-hero"
+        <p class="wc-setup-actions step" style="display: flex; justify-content: center">
+          <a class="btn bg-primary"
              href="https://<?php echo Helper::getDomain( 'CONNECT' ) . "/auth/login/${loginkey['key']}"; ?>" target="_blank">
-            Go To Beans
+            Go To Liana
           </a>
         </p>
       </div>
     </div>
-
-    <h3> Installed Apps </h3>
-    <table class="beans-apps-table">
-        <?php foreach ( $apps as $app_name => &$app_info ): ?>
-          <tr>
-            <td>
-              <div><img src="https://trybeans.s3.amazonaws.com/static-v3/connect/img/app/logo-full-<?php echo $app_name; ?>.svg"></div>
-              <p><?php echo $app_info['description'] ?></p>
-            </td>
-            <td>
-                <?php if ( isset( $app_info['instance'] ) ): ?>
-                  <span>Installed</span>
-                <?php else: ?>
-                  <span>Not Installed</span>
-                <?php endif; ?>
-            </td>
-          </tr>
-        <?php endforeach; ?>
-    </table>
-    <div style='margin: 20px auto'>
+      <div style='margin: 20px auto'>
       <p>
       If you like Beans, please
       <a  href='https://wordpress.org/support/plugin/beans-woocommerce-loyalty-rewards/reviews/' target="_blank">
         leave us a ★★★★★ rating
       </a>
       </p>
-      <a  style="color: #d70000; float: right" href='<?php echo admin_url( 'admin.php?page=beans-woo&reset_beans=1' ); ?>'>Reset Settings Now</a>
     </div>
   </div>
   <?php endif; ?>
+    <div style="margin-top: 20px !important;" >
+        <img  src="https://trybeans.s3.amazonaws.com/static-v3/connect/img/beans.svg"
+              alt="Beans" width="5%">
+    </div>
 </div>
 

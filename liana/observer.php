@@ -31,6 +31,10 @@ class Observer {
         unset( $_SESSION['liana_debit'] );
     }
 
+	public static function admin_notice() {
+		Helper::admin_notice('liana');
+	}
+
     public static function createBeansAccount( $email, $firstname, $lastname ) {
         try {
             return Helper::API()->post( '/liana/account', array(

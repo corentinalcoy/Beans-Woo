@@ -7,9 +7,10 @@ use BeansWoo\Helper;
 class Observer {
 
     public static function init(){
-        add_action( 'admin_notices',                array( __CLASS__, 'admin_notice' ) );
-        add_action( 'admin_menu',                   array( __CLASS__, 'admin_menu' ), 100 );
-        add_filter( 'plugin_row_meta',              array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
+        add_action( 'admin_notices',                array('\BeansWoo\Liana\Observer', 'admin_notice' ) );
+        add_action( 'admin_notices',                array('\BeansWoo\Snow\Observer', 'admin_notice' ) );
+        add_action( 'admin_menu',                   array( __CLASS__, 'admin_menu' ));
+        //add_filter( 'plugin_row_meta',              array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
     }
 
     public static function plugin_row_meta( $links, $file ) {
@@ -35,10 +36,21 @@ class Observer {
     }
 
     public static function admin_menu() {
-        if ( current_user_can( 'manage_woocommerce' ) ) {
-            add_submenu_page( 'woocommerce', 'Beans',
-                'Beans', 'manage_woocommerce',
-                'beans-woo', array( '\BeansWoo\Admin\Block', 'render_settings_page' ) );
+
+        if ( current_user_can( 'manage_options' ) ) {
+        	add_menu_page('Beans', 'Beans', 'manage_options', 'beans-woo',
+		        ['\BeansWoo\Liana\Admin\Block', 'render_settings_page'],
+		        plugins_url('/assets/beans_wordpressIcon.svg', BEANS_PLUGIN_FILENAME), 56);
+
+            add_submenu_page( 'beans-woo', 'Liana',
+                'Liana', 'manage_options',
+                'beans-woo');
+            add_submenu_page( 'beans-woo', 'Snow',
+                'Snow', 'manage_options',
+                'beans-woo-snow', ['\BeansWoo\Snow\Admin\Block', 'render_settings_page']);
+	        add_submenu_page( 'beans-woo', 'Settings',
+		        'Settings', 'manage_options',
+		        'beans-woo-settings', ['\BeansWoo\Admin\Setting\Block', 'render_settings_page']);
         }
     }
 

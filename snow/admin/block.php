@@ -1,6 +1,6 @@
 <?php
 
-namespace BeansWoo\Admin;
+namespace BeansWoo\Snow\Admin;
 
 use BeansWoo\Helper;
 
@@ -19,19 +19,13 @@ class Block {
 
         if ( isset( $_GET['card'] ) && isset( $_GET['token'] ) ) {
             if ( self::_processSetup() ) {
-                return wp_redirect( admin_url( 'admin.php?page=beans-woo' ) );
-            }
-        }
-
-        if ( isset( $_GET['reset_beans'] ) ) {
-            if ( Helper::resetSetup() ) {
-                return wp_redirect( admin_url( 'admin.php?page=beans-woo' ) );
+                return wp_redirect( admin_url( 'admin.php?page=beans-woo-snow' ) );
             }
         }
 
         self::_render_notices();
 
-        if ( Helper::isSetup() ) {
+        if ( Helper::isSetup() && Helper::isSetupApp('snow')) {
             return include( dirname( __FILE__ ) . '/block.info.php' );
         }
 
@@ -62,7 +56,7 @@ class Block {
 
     private static function _processSetup() {
 
-        self::_installAssets();
+        //self::_installAssets();
 
         Helper::log( print_r( $_GET, true ) );
 

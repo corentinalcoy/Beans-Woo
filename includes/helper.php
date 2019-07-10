@@ -26,15 +26,21 @@ class Helper {
         return array(
             'liana' => array(
                 'name' => 'Liana',
-                'description' =>'Loyalty program to keep customers tight to your shop.'
+                'description' =>'Loyalty program to keep customers tight to your shop.',
+	            'link' => 'admin.php?page=beans-woo',
             ),
-            'bamboo' => array(
-                'name' => 'Bamboo',
-                'description' => 'Referral program to make customers bring more customers.'
-            ),
-            'lotus' => array(
-                'name' => 'Lotus',
-                'description' => 'Social media posting automation.'
+//            'bamboo' => array(
+//                'name' => 'Bamboo',
+//                'description' => 'Referral program to make customers bring more customers.'
+//            ),
+//            'lotus' => array(
+//                'name' => 'Lotus',
+//                'description' => 'Social media posting automation.'
+//            ),
+            'snow' => array(
+            	'name' => 'Snow',
+	            'description' => 'Notifications widget.',
+	            'link' => 'admin.php?page=beans-woo-snow',
             ),
         );
     }
@@ -87,6 +93,10 @@ class Helper {
         return true;
     }
 
+    public static function isSetupApp(string $app_name){
+    	return ! is_null(Helper::getCard($app_name));
+    }
+
     public static function log( $info ) {
         if ( file_exists( BEANS_INFO_LOG ) && filesize( BEANS_INFO_LOG ) > 100000 ) {
             unlink( BEANS_INFO_LOG );
@@ -128,5 +138,18 @@ class Helper {
 
         return $woocommerce->cart;
     }
+
+	public static function admin_notice($app_name) {
+
+		if ( ! Helper::isSetup() || !Helper::isSetupApp($app_name)) {
+			$app_info = Helper::getApps()[$app_name];
+			echo '<div class="error" style="margin-left: auto"><div style="margin: 10px auto;"> Beans: ' .
+			     __( "${app_info['name']} is not properly setup.", 'beans-woo' ) .
+			     ' <a href="' . admin_url($app_info['link'] ) . '">' .
+			     __( 'Set up', 'beans-woo' ) .
+			     '</a>' .
+			     '</div></div>';
+		}
+	}
 
 }
