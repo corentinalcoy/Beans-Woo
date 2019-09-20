@@ -7,6 +7,7 @@ defined('ABSPATH') or die;
 //use BeansWoo\Helper;
 use BeansWoo\Admin\Connector\LianaConnector;
 use BeansWoo\Admin\Connector\SnowConnector;
+use BeansWoo\Admin\Connector\PoppyConnector;
 //use BeansWoo\Admin\Connector\BambooConnector;
 //use BeansWoo\Admin\Connector\LotusConnector;
 
@@ -44,6 +45,15 @@ class Observer {
 //                'capability' => 'manage_options',
 //                'callback' => ['\BeansWoo\Admin\Connector\LotusConnector', 'render_settings_page'],
 //            ],
+
+            [
+                'parent_slug' => BEANS_WOO_BASE_MENU_SLUG,
+                'page_title' => ucfirst(PoppyConnector::$app_name),
+                'menu_title' => ucfirst(PoppyConnector::$app_name),
+                'menu_slug' =>  BEANS_WOO_BASE_MENU_SLUG . "-" . PoppyConnector::$app_name,
+                'capability' => 'manage_options',
+                'callback' => ['\BeansWoo\Admin\Connector\PoppyConnector', 'render_settings_page'],
+            ],
 
             [
                 'parent_slug' => BEANS_WOO_BASE_MENU_SLUG,

@@ -39,6 +39,12 @@ class Helper {
 	            'description' => 'Automatically let customers know about new products and promotions in your shop.',
 	            'link' => self::BASE_LINK . BEANS_WOO_BASE_MENU_SLUG . '-snow',
             ),
+            'poppy' => array(
+            	'name' => 'Poppy',
+	            'title' => 'Get customers to take actions when they are most likely to convert',
+	            'description' => 'Display the right popup at the right time to the right customer.',
+	            'link' => self::BASE_LINK . BEANS_WOO_BASE_MENU_SLUG . '-poppy',
+            ),
 
             /**'bamboo' => array(
 	        	'name' => 'Bamboo',

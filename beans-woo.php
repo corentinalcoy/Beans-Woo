@@ -33,12 +33,15 @@ include_once( 'admin/init.php' );
 
 include_once('front/liana/init.php');
 include_once('front/snow/init.php');
+include_once ('front/poppy/init.php');
 //include_once('front/bamboo/init.php');
 # include_once('front/lotus/init.php');
 
 use BeansWoo\Admin\Main as AdminMain;
 use BeansWoo\Front\Liana\Main as LianaMain;
 use BeansWoo\Front\Snow\Main as SnowMain;
+use BeansWoo\Front\Poppy\Main as PoppyMain;
+
 //use BeansWoo\Front\Bamboo\Main as BambooMain;
 
 
@@ -68,6 +71,7 @@ if ( ! class_exists( 'WC_Beans' ) ) :
 
             LianaMain::init();
             SnowMain::init();
+            PoppyMain::init();
 //            BambooMain::init();
         }
     }
