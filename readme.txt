@@ -86,8 +86,14 @@ The WordPress codex contains instructions on
 
 == Changelog ==
 
+= 3.1.1 =
+- Fix Snow display
+- Fix connect issues
+- Add Informations and Setting section
+
 = 3.1.0 =
 - Introducing Snow: the new widget notifications
+- Introducing Liana redemption feature
 
 = 3.0.6 =
 - Fix redemption issues
